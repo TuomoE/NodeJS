@@ -1,0 +1,15 @@
+extends layout
+
+block content
+
+  div
+    h1 Login page
+    form(action='/login',method='post',data-ajax='false')
+      br
+      label Username
+      input(type="text",name="username")
+      br
+      label Password
+      input(type="text",name="password")
+      br
+      input(type="submit",value="Login")
