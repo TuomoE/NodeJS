@@ -1,0 +1,28 @@
+extends layout
+
+block content
+
+  div
+    br
+    a(href='/browse') Selaa osoitteita
+    br
+    br
+    form(action='/addItem',method='post',data-ajax='false')
+      label Etunimi
+      input(type='text',name='firstname')
+      br
+      laber Sukunimi
+      br
+      input(type='text',name='lastname')
+      br
+      label Osoite
+      input(type='text',name='address')
+      br
+      label puhelin
+      input(type='text',name='phone')
+      br
+      label sahkoposti
+      input(type='text',name='email')
+      br
+      br
+      input(type='submit',value='Tallenna')
