@@ -8,24 +8,24 @@ block content
     a(href='/browse') Selaa osoitteita
     br
     br
-    p #{formdata}
+    h1 MUISTA TÄYTTÄÄ KAIKKI KENTÄT!
     br
     form(action='/addItem',method='post',data-ajax='false')
       label Etunimi
-      input(type='text',name='firstname')
+      input(type='text',name='firstname',value=formdata.firstname)
       br
       laber Sukunimi
       br
-      input(type='text',name='lastname')
+      input(type='text',name='lastname',value=formdata.lastname)
       br
       label Osoite
-      input(type='text',name='address')
+      input(type='text',name='address',value=formdata.address)
       br
       label Puhelin
-      input(type='text',name='phone')
+      input(type='text',name='phone',value=formdata.phone)
       br
       label Sähkoposti
-      input(type='text',name='email')
+      input(type='text',name='email',value=formdata.email)
       br
       br
       input(type='submit',value='Tallenna')

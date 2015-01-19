@@ -6,8 +6,7 @@ block content
   div
     ul(data-role='listview',data-filter='true',data-input='#test')  
       each addr in addresses
-        li database ID: #{addr._id}
-        li Etunimi: #{addr.firstname}
-        li Sukunimi: #{addr.lastname}
-        li Osoite: #{addr.address}
-        li puhelin: #{addr.phone}
+        li
+          a(href='/modify_userdata?id=#{addr._id}') #{addr.firstname} #{addr.lastname} #{addr.id}
+        
+        
