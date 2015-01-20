@@ -9,16 +9,13 @@ router.get('/', function(req, res) {
 
 
 router.login = function (req, res) {
-  
-  //if(req.body.username === "Tuomo" && req.body.password === "1") {
-    
-//    req.session.loggedin = true;
-    res.render('add', {title: 'Add Address'});  
-//  } 
-//  else {
-//    res.send('<h1>Annoit käyttäjätunnusen tai salasanan vääärin!</h1>');
-      
-//  }
+         
+    db.login(req,res);
+}
+
+router.logout = function (req,res) {
+ 
+   db.logout(req,res);
 }
 
 router.addItem = function (req,res) {
@@ -29,8 +26,12 @@ router.addItem = function (req,res) {
 
 router.browse = function (req,res) {
   
-  db.getAddresses(req,res);
-  
+  if(req.session.loggedin) {
+    db.getAddresses(req,res);
+  }
+  else {
+    res.render('login');
+  }
 }
 
 router.reguser = function(req,res) {
@@ -45,7 +46,7 @@ router.register = function(req,res) {
 
 router.modify = function(req,res) {
  
-  // tähän kutsu db.modifyUserData ja toteutus db:hen
+  // db.modifyUserData
 }
 
 router.modify_userdata = function(req,res) {

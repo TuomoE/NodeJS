@@ -4,9 +4,9 @@ block content
 
   div
   div
-    ul(data-role='listview',data-filter='true',data-input='#test')  
+    ul(data-role='listview',data-filter='true',data-autodividers="true")  
       each addr in addresses
         li
-          a(href='/modify_userdata?id=#{addr._id}') #{addr.firstname} #{addr.lastname} #{addr.id}
+          a(href='/modify_userdata?id=#{addr._id}') #{addr.lastname} #{addr.firstname} 
         
         
