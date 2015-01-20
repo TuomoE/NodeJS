@@ -5,6 +5,10 @@ body {
 a {
   color: #00b7ff;
 }
-error {
+#error {
   color: #f00;
+}
+#info {
+  color: #00f;
+  font: 14px;
 }

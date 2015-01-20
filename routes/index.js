@@ -9,24 +9,40 @@ router.get('/', function(req, res) {
 
 
 router.login = function (req, res) {
-         
+  if(!req.session.loggedin) {      
     db.login(req,res);
+  }
+  else {
+    console.log('loggedin: ' + req.session.username);
+    res.render('add');
+  }
+  
 }
 
 router.logout = function (req,res) {
- 
+  
+  if(req.session.loggedin) {
    db.logout(req,res);
+  }
+  else {
+    res.render('login'); 
+  }
 }
 
 router.addItem = function (req,res) {
-
-  db.addAddress(req,res);
-
+  
+  if(req.session.loggedin) {
+    db.addAddress(req,res);
+  }
+  else {
+    res.render('login'); 
+  }
 }
 
 router.browse = function (req,res) {
   
   if(req.session.loggedin) {
+    console.log('loggedin: ' + req.session.username);
     db.getAddresses(req,res);
   }
   else {
@@ -41,18 +57,28 @@ router.reguser = function(req,res) {
 
 router.register = function(req,res) {
   
+  if(req.session.loggedin) {
+    res.render('login',{notify: 'Nykyisen käyttäjän täytyy ensin kirjautua ulos!'});    
+  }
   res.render('register');
 } 
 
 router.modify = function(req,res) {
- 
+  if(req.session.loggedin) {
   // db.modifyUserData
+  }
+  else {
+    res.render('login');
+  }
 }
 
 router.modify_userdata = function(req,res) {
-
-  db.getAddressInfo(req,res);
-  
+  if(req.session.loggedin) {
+    db.getAddressInfo(req,res);
+  }
+  else {
+    res.render('login');
+  }
 }
 
 module.exports = router;

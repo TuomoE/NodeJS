@@ -2,7 +2,8 @@ extends layout
 
 block content
   
- 
+  header
+    
   div
     br
     a(href='/browse') Selaa osoitteita
@@ -10,6 +11,7 @@ block content
     br
     br
     p #{formdata}
+    p #{userinfo}
     br
     form(action='/addItem',method='post',data-ajax='false')
       label Etunimi

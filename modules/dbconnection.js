@@ -1,8 +1,11 @@
 var mongoose = require('mongoose');
 
+
+//************************************
+// otetaan yhteys tietokantaan
+//************************************
 var uri = 'mongodb://localhost/address_db';
 
-// check if we can connect to mongodb...
 mongoose.connect(uri,function(err,succ) {
     if(err) {
         console.log("Error: " + err);   
@@ -67,7 +70,7 @@ exports.registerUser = function(req,res) {
       }
       else {
         console.log('Tallennetaan uusi käyttäjä kantaan');
-        res.render('add');
+        res.render('login',{newUser:req.body.username,info:'Hei ' + req.body.username + '! Nyt voit kirjautua tunnuksillasi sisään.'});
       }
     }); 
   }
@@ -77,7 +80,7 @@ exports.registerUser = function(req,res) {
   }
 }
 
-//**************************************
+//*********************************************
 // kirjaudutaan sisään. tarkistetaan ettei tunnusta/salasanaa jo löydy.
 // asetetaan cookie
 //********************************************
@@ -91,17 +94,17 @@ exports.login = function(req,res) {
   console.log(err);
   console.log(user[0]);
     
-  if(err) {
+  if(err || user[0] === undefined || user[0] === null) {
 
     console.log('ei saatu haettua käyttäjätietoja');
     res.render('login',{error: 'Käyttäjätunnus tai salasana on väärin'});
   }
   else {
-
+    console.log(user[0].username);
     req.session.loggedin = true;
     req.session.username = user[0].username;
-    console.log(req.session.username);
-    res.render('add',{userinfo:user.username});
+    console.log('tallennettu sessio ' + req.session.username);
+    res.render('add',{userinfo:req.session.username});
   }  
   });
   
@@ -110,8 +113,10 @@ exports.login = function(req,res) {
 
 //***********************************
 // kirjaudutaan ulos ja poistetaan cookiet selaimesta
+//**********************************
 exports.logout = function(req,res) {
   console.log('logout funktio');
+//  delete req.session.loggedin;
   req.session.destroy();
   res.render('login',{userinfo:'Cookiet poistettu'})
 }
@@ -119,6 +124,7 @@ exports.logout = function(req,res) {
 //******************************************
 // Lisää osoitteen kantaan address_db
 // ja tarkistaa että kaikki tiedot on annettu
+//*****************************************
 exports.addAddress = function(req,res){
   
   // tarkistetaan onko tyhjiä kenttiä
@@ -154,28 +160,26 @@ exports.addAddress = function(req,res){
   // jos kentät on ok tallennetaan kantaan
   else {
   
-  var modified_address = new Address({
-  firstname:req.body.firstname,
-  lastname:req.body.lastname,
-  address:req.body.address,
-  phone:req.body.phone,
-  email:req.body.email,
-  
-  });
-/*  
-  modified_address.findOne(req.body.id,{ 
+    var new_address = new Address({
+    firstname:req.body.firstname,
+    lastname:req.body.lastname,
+    address:req.body.address,
+    phone:req.body.phone,
+    email:req.body.email,
 
+    });
+
+
+    new_address.save(function(err){ 
       if(err) {
-        res.render('error', err);
+
+
       }
       else {
-        console.log('Tallennetaan osoitetiedot kantaan');
         res.render('add');
       }
-    }); 
-    */
+    });
   }   
-  
 }
 
 
@@ -202,7 +206,8 @@ exports.getAddresses = function(req,res) {
 
 
 //********************************************
-// Haetaan haluttu osoitetieto
+// Haetaan haluttu osoitetieto ja tuodaan formissa tiedot
+//******************************************
 exports.getAddressInfo = function(req,res) {
   console.log('getAddressInfo');
   console.log(req.query.id);
@@ -220,7 +225,11 @@ exports.getAddressInfo = function(req,res) {
   });
 }
 
-exports.modifyUserdata = function(req,res) {
+//*********************************************
+// Tallennetaan muuttuneet tiedot
+// to-do: päivitys kantaan. routtaus.
+//*****************************************
+exports.modifyUserData = function(req,res) {
   
   // tarkistetaan onko tyhjiä kenttiä
   var empty = 0;
@@ -246,4 +255,17 @@ exports.modifyUserdata = function(req,res) {
      req.body.email === null){ 
     empty++;
   }
+  
+  var query;
+  Address.findById(req.query.id,function(err,res) {
+    if(err) { res.render('err'); }
+    else { query = res[0]; }
+  });
+  
+  console.log(res[0]);                                      
+  
+//  var update = { username:req.body.username,lastname:req.body.lastname,address:req.body.address,phone:req.body.phone,email:req.body.email};
+  
+//  Address.findOneAndUpdate(query, update);
+//  console.log('päivitetty?');
 }

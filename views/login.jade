@@ -3,16 +3,21 @@ extends layout
 block content
 
   div
-    h1 Login page
+    h2 Kirjaudu sisään
     form(action='/login',method='post',data-ajax='false')
       br
-      label Username
+      label Käyttäjänimi
       input(type="text",name="username")
       br
-      label Password
+      label Salasana
       input(type="text",name="password")
       br
-      input(type="submit",value="Login")
+      input(type="submit",value="Kirjaudu sisään")
       
   div
     a(href='/register') rekisteröidy
+    a(href='/logout') Kirjaudu ulos
+    
+  div
+    p(id='info') #{info}
+    p(id='info') #{notify}
