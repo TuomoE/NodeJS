@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  header(class='header')
+  
+  div(class='addDiv')
+    h2 Uuden käyttäjän rekisteröinti
+    form(action='/reguser',method='post',data-ajax='false')
+      br
+      label Käyttäjänimi
+      input(type='text',name='username')
+      br
+      label Salasana
+      input(type='text',name='password')
+      br
+      label Salasana uudestaan
+      input(type='text',name='password2')
+      br
+      input(type='submit',value='Luo uusi käyttäjä')
+  footer
+    p(id='error') #{error}
+ 

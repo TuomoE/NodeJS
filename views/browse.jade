@@ -2,12 +2,12 @@ extends layout
 
 block content
 
-  div
-  div
-    ul(data-role='listview',data-filter='true',data-input='#test')  
+  header(class='header')
+    a(class='logout',href='/logout') Kirjaudu ulos
+  div(class='addDiv')
+    ul(data-role='listview',data-filter='true',data-autodividers="true")  
       each addr in addresses
-        li database ID: #{addr._id}
-        li Etunimi: #{addr.firstname}
-        li Sukunimi: #{addr.lastname}
-        li Osoite: #{addr.address}
-        li puhelin: #{addr.phone}
+        li
+          a(href='/modify_userdata?id=#{addr._id}') #{addr.lastname} #{addr.firstname} 
+        
+        

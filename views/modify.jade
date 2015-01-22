@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  
+  header(class='header')
+    a(class='logout',href='/logout') Kirjaudu ulos
+  div(class='addDiv')
+    br
+    form(action='/modify',method='post',data-ajax='false')
+      label Etunimi
+      input(type='text',name='firstname',value=userdata.firstname)
+      br
+      laber Sukunimi
+      br
+      input(type='text',name='lastname',value=userdata.lastname)
+      br
+      label Osoite
+      input(type='text',name='address',value=userdata.address)
+      br
+      label Puhelin
+      input(type='text',name='phone',value=userdata.phone)
+      br
+      label Sähkoposti
+      input(type='text',name='email',value=userdata.email)
+      br
+      br
+      input(type='submit',value='Tallenna muutokset')

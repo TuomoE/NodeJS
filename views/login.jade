@@ -1,15 +1,24 @@
 extends layout
 
 block content
-
-  div
-    h1 Login page
+  
+  header(class='header')
+  div(class='loginDiv')
+    h2 Kirjaudu sisään
     form(action='/login',method='post',data-ajax='false')
       br
-      label Username
-      input(type="text",name="username")
+      label Käyttäjänimi
+      input(class='lForm',type='text',name='username')
       br
-      label Password
-      input(type="text",name="password")
+      label Salasana
+      input(class='lForm',type="password",name='password')
       br
-      input(type="submit",value="Login")
+      input(class='lForm',type='submit',value='Kirjaudu sisään')
+      
+  div(class='loginDiv')
+    a(href='/register') rekisteröidy
+    
+    
+  div(class='loginDiv')
+    p(id='info') #{info}
+    p(id='info') #{notify}

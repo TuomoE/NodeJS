@@ -13,7 +13,9 @@ var http = require('http');
  */
 
 var port = parseInt(process.env.PORT, 10) || 3000;
+var ip =parseInt(process.env.IP)
 app.set('port', port);
+
 
 /**
  * Create HTTP server.
@@ -26,6 +28,7 @@ var server = http.createServer(app);
  */
 
 server.listen(port);
+server.listen(ip);
 server.on('error', onError);
 server.on('listening', onListening);
 

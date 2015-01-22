@@ -1,11 +1,12 @@
 extends layout
 
 block content
-
-  div
-    br
-    a(href='/browse') Selaa osoitteita
-    br
+  
+  header(class='header')
+    a(id='browse',href='/browse') Selaa yhteystietoja
+    a(class='logout',href='/logout') Kirjaudu ulos
+  div(class='addDiv')
+   
     br
     form(action='/addItem',method='post',data-ajax='false')
       label Etunimi
@@ -18,11 +19,14 @@ block content
       label Osoite
       input(type='text',name='address')
       br
-      label puhelin
+      label Puhelin
       input(type='text',name='phone')
       br
-      label sahkoposti
+      label Sähkoposti
       input(type='text',name='email')
       br
       br
       input(type='submit',value='Tallenna')
+  footer
+    p #{formdata}
+  //  p #{userinfo}
