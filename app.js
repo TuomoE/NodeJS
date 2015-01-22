@@ -33,7 +33,7 @@ app.use('/addItem', routes.addItem);
 app.use('/browse', routes.browse);
 app.use('/register', routes.register);
 app.use('/reguser', routes.reguser);
-app.use('/modify_userdata', routes.modify_userdata);
+app.use('/modifyForm', routes.modifyForm);
 app.use('/modify', routes.modify);
 app.use('/logout', routes.logout);
 

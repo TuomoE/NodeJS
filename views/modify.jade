@@ -6,7 +6,7 @@ block content
     a(class='logout',href='/logout') Kirjaudu ulos
   div(class='addDiv')
     br
-    form(action='/modify',method='post',data-ajax='false')
+    form(action='/modify',method='put',data-ajax='false')
       label Etunimi
       input(type='text',name='firstname',value=userdata.firstname)
       br
@@ -23,5 +23,6 @@ block content
       label Sähkoposti
       input(type='text',name='email',value=userdata.email)
       br
+      input(type="hidden",name='id',value='#{_id}')
       br
       input(type='submit',value='Tallenna muutokset')

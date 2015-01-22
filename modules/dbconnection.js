@@ -195,8 +195,7 @@ exports.getAddresses = function(req,res) {
         console,log('Virhe haussa');
       }
       else {
-        console.log('yritetään tulostaa hakua');
-        console.log(data);
+     //   console.log(data);
         res.render('browse',{addresses:data}); 
         
       }
@@ -220,7 +219,7 @@ exports.getAddressInfo = function(req,res) {
     else {
      
       console.log(data);
-      res.render('modify',{userdata:data});
+      res.render('contactInfo',{userdata:data});
     }
   });
 }
@@ -231,8 +230,19 @@ exports.getAddressInfo = function(req,res) {
 //*****************************************
 exports.modifyUserData = function(req,res) {
   
+  
+  console.log(req.query.id);
+
+  Address.findOne(req.query.id, function(req,user) {
+    
+    res.render('modify', {userdata:user});
+  }); 
+}
+            
+
+
   // tarkistetaan onko tyhjiä kenttiä
-  var empty = 0;
+/*  var empty = 0;
 
   if(req.body.firstname === "" || req.body.firstname === undefined ||
      req.body.firstname === null){ 
@@ -255,15 +265,4 @@ exports.modifyUserData = function(req,res) {
      req.body.email === null){ 
     empty++;
   }
-  
-  var query = req.query.id;
- 
-  
-  console.log(res[0]);                                      
-  var query = { id:req.query.id }
-  var update = { username:req.body.username,lastname:req.body.lastname,address:req.body.address,phone:req.body.phone,email:req.body.email};
-  
-  Address.findOneAndUpdate(query, update);
-  console.log('Sessio:' + req.session.username);
-  res.render('browse');
-}
+  */

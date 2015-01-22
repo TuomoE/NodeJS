@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  
+ header(class='header')
+    a(id='browse',href='/browse') Selaa yhteystietoja
+    a(class='logout',href='/logout') Kirjaudu ulos
+  div(class='addDiv')
+    h1 #{userdata.firstname} #{userdata.lastname} 
+    table(data-role='table',data-mode='reflow')
+      thead
+        tr
+          th Address
+          th Email
+          th Phone
+      tbody
+        tr
+          td #{userdata.address}
+          td #{userdata.email}
+          td #{userdata.phone}

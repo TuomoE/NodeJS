@@ -65,14 +65,14 @@ router.register = function(req,res) {
 
 router.modify = function(req,res) {
   if(req.session.loggedin) {
-  // db.modifyUserData
+    db.modifyUserData(req,res);
   }
   else {
     res.render('login');
   }
 }
 
-router.modify_userdata = function(req,res) {
+router.modifyForm = function(req,res) {
   if(req.session.loggedin) {
     db.getAddressInfo(req,res);
   }
