@@ -172,7 +172,7 @@ exports.addAddress = function(req,res){
 
     new_address.save(function(err){ 
       if(err) {
-
+          // käsittele virheet
 
       }
       else {
@@ -256,16 +256,14 @@ exports.modifyUserData = function(req,res) {
     empty++;
   }
   
-  var query;
-  Address.findById(req.query.id,function(err,res) {
-    if(err) { res.render('err'); }
-    else { query = res[0]; }
-  });
+  var query = req.query.id;
+ 
   
   console.log(res[0]);                                      
+  var query = { id:req.query.id }
+  var update = { username:req.body.username,lastname:req.body.lastname,address:req.body.address,phone:req.body.phone,email:req.body.email};
   
-//  var update = { username:req.body.username,lastname:req.body.lastname,address:req.body.address,phone:req.body.phone,email:req.body.email};
-  
-//  Address.findOneAndUpdate(query, update);
-//  console.log('päivitetty?');
+  Address.findOneAndUpdate(query, update);
+  console.log('Sessio:' + req.session.username);
+  res.render('browse');
 }

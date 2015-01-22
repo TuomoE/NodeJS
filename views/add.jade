@@ -2,16 +2,11 @@ extends layout
 
 block content
   
-  header
-    
-  div
-    br
-    a(href='/browse') Selaa osoitteita
-    a(href='/logout')  Kirjaudu ulos
-    br
-    br
-    p #{formdata}
-    p #{userinfo}
+  header(class='header')
+    a(id='browse',href='/browse') Selaa yhteystietoja
+    a(class='logout',href='/logout') Kirjaudu ulos
+  div(class='addDiv')
+   
     br
     form(action='/addItem',method='post',data-ajax='false')
       label Etunimi
@@ -32,3 +27,6 @@ block content
       br
       br
       input(type='submit',value='Tallenna')
+  footer
+    p #{formdata}
+  //  p #{userinfo}
