@@ -3,8 +3,9 @@ extends layout
 block content
 
   header(class='header')
-    a(class='logout',href='/logout') Kirjaudu ulos
   div(class='addDiv')
+    a(id='addBut',href='/add',data-role="button",data-inline="true") Lisää uusi yhteystieto
+    a(class='logout',href='/logout',data-role="button",data-inline="true") Kirjaudu ulos
     ul(data-role='listview',data-filter='true',data-autodividers="true")  
       each addr in addresses
         li

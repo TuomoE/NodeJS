@@ -1,5 +1,6 @@
 body {
-  padding: 50px;
+  background-color: #e6ffff;
+  padding: 40px;
   font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 a {
@@ -19,13 +20,17 @@ a {
   width: 400px;
   margin: 0 auto;
 }
+label {
+  font: 14px;
+}
 .addDiv {
-  padding: 50px;
+  padding: 40px;
   width: 400px;
   margin: 0 auto;
   border-style: solid;
   border-width: 1px;
   border-color: #808080;
+  border-radius: 15px;
   box-shadow: 10px 10px 5px #888;
 }
 .header {

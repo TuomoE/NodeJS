@@ -39,6 +39,17 @@ router.addItem = function (req,res) {
   }
 }
 
+router.add = function(req,res) {
+  
+  console.log('add!');
+  if(req.session.loggedin) {
+    res.render('add');
+  } 
+  else {
+    res.render('login'); 
+  }
+}
+
 router.browse = function (req,res) {
   
   if(req.session.loggedin) {

@@ -154,7 +154,7 @@ exports.addAddress = function(req,res){
   // jos tietoja puuttuu pydetään täyttämään uudelleen
   // lähetetään täytetyt tiedot takaisin formiin
   if (empty > 0) {
-    res.render('addAgain',{formdata:req.body}); 
+    res.render('add',{error: "Kaikki kentät on täytettävä."}); 
   }
   
   // jos kentät on ok tallennetaan kantaan

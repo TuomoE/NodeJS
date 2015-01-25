@@ -28,6 +28,7 @@ app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/add', routes.add);
 app.use('/login', routes.login);
 app.use('/addItem', routes.addItem);
 app.use('/browse', routes.browse);
@@ -36,6 +37,7 @@ app.use('/reguser', routes.reguser);
 app.use('/modifyForm', routes.modifyForm);
 app.use('/modify', routes.modify);
 app.use('/logout', routes.logout);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

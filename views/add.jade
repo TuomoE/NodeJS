@@ -3,12 +3,12 @@ extends layout
 block content
   
   header(class='header')
-    a(id='browse',href='/browse') Selaa yhteystietoja
-    a(class='logout',href='/logout') Kirjaudu ulos
+    
   div(class='addDiv')
-   
-    br
     form(action='/addItem',method='post',data-ajax='false')
+      a(id='browse',href='/browse',data-role="button",data-inline="true") Selaa yhteystietoja
+      a(class='logout',href='/browse',data-role="button",data-inline="true") Kirjaudu ulos
+      br
       label Etunimi
       input(type='text',name='firstname')
       br
@@ -27,6 +27,7 @@ block content
       br
       br
       input(type='submit',value='Tallenna')
+      p(id='error') #{error}
   footer
-    p #{formdata}
+    
   //  p #{userinfo}
